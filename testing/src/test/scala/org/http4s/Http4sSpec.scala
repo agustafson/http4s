@@ -16,6 +16,7 @@ import org.specs2.execute.AsResult
 import org.specs2.scalacheck.Parameters
 import org.specs2.matcher._
 import org.specs2.mutable.Specification
+import org.specs2.specification.ExamplesTimeout
 import org.specs2.specification.dsl.FragmentsDsl
 import org.specs2.specification.create.{DefaultFragmentFactory=>ff}
 import org.specs2.specification.core.Fragments
@@ -40,6 +41,7 @@ trait Http4sSpec extends Specification
   with AnyMatchers
   with OptionMatchers
   with DisjunctionMatchers
+  with ExamplesTimeout
   with Http4s
   with ArbitraryInstances
   with AllInstances

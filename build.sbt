@@ -3,7 +3,7 @@ import com.typesafe.sbt.SbtGhPages.GhPagesKeys._
 import com.typesafe.sbt.SbtGit.GitKeys._
 import com.typesafe.sbt.pgp.PgpKeys._
 import sbtunidoc.Plugin.UnidocKeys._
-
+import scala.concurrent.duration._
 import scala.xml.transform.{RewriteRule, RuleTransformer}
 
 // Global settings
@@ -411,7 +411,9 @@ def http4sProject(name: String) = Project(name, file(name))
   .settings(publishSettings)
   .settings(
     moduleName := s"http4s-$name",
-    testOptions in Test += Tests.Argument(TestFrameworks.Specs2,"xonly", "failtrace"),
+    testOptions in Test += Tests.Argument(
+      TestFrameworks.Specs2, "failtrace", "timeout", 1.minute.toMillis.toString
+    ),
     initCommands()
   )
 
